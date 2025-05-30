@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahal Solution | Futuristic Graphic Design Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header/Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent py-3">
+    <div class="container">
+      <a class="navbar-brand neon-text fw-bold" href="#hero">Sahal Solution</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#footer">Contact Me</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="vh-100 d-flex flex-column justify-content-center aimage.pnglign-items-center text-center">
+    <canvas id="hero-bg"></canvas>
+    <div class="hero-content position-absolute w-100">
+      <h1 class="display-3 fw-bold neon-text">Sahal Solution</h1>
+      <p class="lead futuristic-tagline">Crafting the Future of Design</p>
+      <button class="btn btn-neon mt-4" id="view-work-btn">View Our Work</button>
+    </div>
+    <button id="music-toggle" class="btn btn-music position-absolute top-0 end-0 m-4" title="Toggle Ambient Music">
+      <span class="bi bi-music-note-beamed"></span>
+    </button>
+  </section>
+
+  <!-- Portfolio Gallery -->
+  <section id="portfolio" class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="neon-text">Portfolio Gallery</h2>
+      <button id="add-project-btn" class="btn btn-neon btn-lg rounded-circle shadow-lg" title="Add New Project">+</button>
+    </div>
+    <ul class="nav nav-pills mb-3" id="portfolio-filters">
+      <li class="nav-item"><button class="nav-link active" data-filter="posters">Posters</button></li>
+      <li class="nav-item"><button class="nav-link" data-filter="logos">Logos</button></li>
+      <li class="nav-item"><button class="nav-link" data-filter="branding">Branding</button></li>
+      <li class="nav-item"><button class="nav-link" data-filter="other-designs">Other Designs</button></li>
+    </ul>
+    <div class="row g-4" id="portfolio-grid">
+      <!-- Project cards will be injected here by JS -->
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="glass-card p-5 text-center">
+            <h2 class="neon-text mb-3">About Sahal Solution</h2>
+            <p class="lead">We are a creative IT company specializing in innovative design solutions. Our philosophy combines technology and creativity to deliver exceptional digital experiences. <br><br><strong>Tools & Skills:</strong> Adobe Creative Suite, Figma, Blender, AI Art, and more.</p>
+            <div class="contact-info mt-4">
+              <p><strong>Email:</strong> info@sahalsolution.com</p>
+              <p><strong>Phone:</strong> +123 456 7890</p>
+              <p><strong>Location:</strong> Global / Remote</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Detail Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content glass-card">
+        <div class="modal-header border-0">
+          <h5 class="modal-title neon-text" id="projectModalLabel"></h5>
+          <button type="button" class="btn-close btn-close-neon" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="projectModalImage" class="img-fluid rounded mb-3" src="" alt="Project Image">
+          <p id="projectModalDate" class="mb-1"></p>
+          <p id="projectModalTools" class="mb-1"></p>
+          <p id="projectModalDescription"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Project Modal -->
+  <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass-card">
+        <div class="modal-header border-0">
+          <h5 class="modal-title neon-text">Add New Project</h5>
+          <button type="button" class="btn-close btn-close-neon" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="add-project-form">
+            <div class="mb-3">
+              <input type="text" class="form-control neon-input" id="project-title" placeholder="Project Title" required>
+            </div>
+            <div class="mb-3">
+              <select class="form-select neon-input" id="project-category" required>
+                <option value="">Select Category</option>
+                <option value="posters">Posters</option>
+                <option value="logos">Logos</option>
+                <option value="branding">Branding</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <input type="date" class="form-control neon-input" id="project-date" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control neon-input" id="project-tools" placeholder="Tools Used (comma separated)" required>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control neon-input" id="project-description" rows="3" placeholder="Description" required></textarea>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control neon-input" id="project-image" placeholder="Image URL or Path" required>
+            </div>
+            <button type="submit" class="btn btn-neon w-100">Add Project</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="ambient-music" loop src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c6b6b6b6.mp3"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Portfolio Data & Rendering -->
+  <script>
+  const initialProjects = [
+    // Template for adding your projects:
+    {
+      title: 'Your Project Title',
+      category: 'logos', // or 'posters' or 'branding'
+      date: 'YYYY-MM-DD',
+      tools: 'Tool1, Tool2, Tool3',
+      description: 'Detailed description of your project',
+      image: 'URL_TO_YOUR_IMAGE'
+    },
+    // Add more projects following the same structure
+  ];
+  </script>
+
+  <!-- Amazing Footer -->
+  <footer id="footer" class="footer mt-auto py-4 bg-dark text-light">
+    <div class="container text-center">
+      <div class="mb-2">
+        <span class="fw-bold neon-text">Sahal Solution</span> &copy; 2025. All rights reserved.
+      </div>
+      <div class="mb-2">
+        <a href="#" class="text-neon mx-2"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-neon mx-2"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="text-neon mx-2"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="text-neon mx-2"><i class="bi bi-envelope"></i></a>
+      </div>
+      <div class="small">Designed by Sahal Solution | Futuristic Portfolio</div>
+    </div>
+  </footer>
+</body>
+</html> 
